@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated()
+        && request.auth.token.role == 'admin';
+    }
+
+    function isManager() {
+      return isAuthenticated()
+        && request.auth.token.role == 'manager';
+    }
+
+    function isOwner(profileId) {
+      return isAuthenticated()
+        && request.auth.uid == profileId;
+    }
+
+    function canReadDocuments(profileId) {
+      return isOwner(profileId) || isAdmin() || isManager();
+    }
+
+    function canManageProfile(profileId) {
+      return isOwner(profileId) || isAdmin() || isManager();
+    }
+
+    function canCreateDocument(profileId) {
+      return isOwner(profileId) || isAdmin();
+    }
+
+    function isValidDocumentContentType() {
+      return request.resource.contentType in [
+        'application/pdf',
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+      ];
+    }
+
+    match /employeeDocuments/{profileId}/{documentId}/{fileName} {
+      allow read: if canReadDocuments(profileId);
+      allow create: if canCreateDocument(profileId)
+        && request.resource.size > 0
+        && request.resource.size < 20 * 1024 * 1024
+        && isValidDocumentContentType()
+        && request.resource.metadata.userProfileId == profileId
+        && request.resource.metadata.documentId == documentId;
+      allow update, delete: if false;
+    }
+
+    match /userPortraits/{fileName} {
+      allow read: if isAuthenticated();
+      allow create, update: if request.resource.size > 0
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('^image/(jpeg|png|webp)$')
+        && request.resource.metadata.userProfileId is string
+        && fileName.matches('^' + request.resource.metadata.userProfileId + '\\.[A-Za-z0-9]+$')
+        && canManageProfile(request.resource.metadata.userProfileId);
+      allow delete: if false;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

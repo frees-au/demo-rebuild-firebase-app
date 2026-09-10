@@ -1,0 +1,73 @@
+{
+  "email": "charlie@example.com",
+  "givenNames": "Charlie",
+  "surname": "Mendes",
+  "preferredName": "Charlie",
+  "employeeCode": "AC-2001",
+  "kioskPin": "2001",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-0404"
+    },
+    {
+      "label": "Family",
+      "default": false,
+      "telephone": "+55 21 3333-0404"
+    }
+  ],
+  "primaryPosition": "store_manager",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "444.555.666-77",
+  "dateOfBirth": "1991-12-06",
+  "identity": {
+    "rg": "98.765.432-1",
+    "rnm": "",
+    "driversLicense": "RJ987654321",
+    "ctps": "2468135",
+    "pis": "246.81357.90-2"
+  },
+  "hireDate": "2026-04-13",
+  "addresses": [
+    {
+      "default": true,
+      "number": "910",
+      "street": "Rua Conde de Bonfim",
+      "complement": "Bloco B",
+      "postalCode": "20540-150",
+      "neighborhood": "Tijuca",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "44455566677",
+    "bankName": "Itau Unibanco",
+    "bankCode": "341",
+    "bankBranch": "5678",
+    "bankBranchDigit": "1",
+    "bankAccount": "456789",
+    "bankAccountDigit": "2",
+    "bankAccountType": "salary",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 900,
+  "routeTimeMinutes": 50,
+  "nextOfKinName": "Paulo Mendes",
+  "nextOfKinRelationship": "Father",
+  "nextOfKinTelephone": "+55 21 95555-0404",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Manager seed profile.",
+  "claims": {
+    "manager": true
+  }
+}

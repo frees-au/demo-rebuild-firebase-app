@@ -1,0 +1,65 @@
+{
+  "email": "felipe@example.com",
+  "givenNames": "Felipe",
+  "surname": "Nascimento",
+  "preferredName": "Felipe",
+  "employeeCode": "AC-1006",
+  "kioskPin": "1006",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-1006"
+    }
+  ],
+  "primaryPosition": "runner",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "159.753.486-33",
+  "dateOfBirth": "1996-10-30",
+  "identity": {
+    "rg": "54.987.321-6",
+    "rnm": "",
+    "driversLicense": "RJ549873216",
+    "ctps": "1597534",
+    "pis": "159.75348.63-3"
+  },
+  "hireDate": "2026-06-15",
+  "addresses": [
+    {
+      "default": true,
+      "number": "19",
+      "street": "Rua Haddock Lobo",
+      "complement": "Fundos",
+      "postalCode": "20260-142",
+      "neighborhood": "Tijuca",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": false
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "felipe@example.com",
+    "bankName": "Banco Inter",
+    "bankCode": "077",
+    "bankBranch": "0001",
+    "bankBranchDigit": "",
+    "bankAccount": "556677",
+    "bankAccountDigit": "9",
+    "bankAccountType": "checking",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 1420,
+  "routeTimeMinutes": 55,
+  "nextOfKinName": "Patricia Nascimento",
+  "nextOfKinRelationship": "Mother",
+  "nextOfKinTelephone": "+55 21 97777-1006",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Employee seed profile."
+}

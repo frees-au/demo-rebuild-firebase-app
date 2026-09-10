@@ -1,0 +1,118 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default"
+    }
+  ],
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, max-age=0, must-revalidate"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/employees",
+        "function": {
+          "functionId": "employees",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/api/account",
+        "function": {
+          "functionId": "account",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/api/app-config",
+        "function": {
+          "functionId": "appConfig",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/api/kiosk",
+        "function": {
+          "functionId": "kiosk",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "/api/admin",
+        "function": {
+          "functionId": "admin",
+          "region": "southamerica-east1"
+        }
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5002
+    },
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "functions": {
+      "port": 5001
+    },
+    "storage": {
+      "port": 9199
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    }
+  },
+  "auth": {
+    "authorizedDomains": [
+      "localhost",
+      "127.0.0.1",
+      // Get this from Firebase Console > Hosting > the Firebase Hosting web.app domain.
+      "UPDATE_ME",
+      // Get this from Firebase Console > Hosting > the Firebase Hosting firebaseapp.com domain.
+      "UPDATE_ME",
+      // Get this from Firebase Console > Authentication > Settings > Authorized domains.
+      "UPDATE_ME",
+      "example.com"
+    ],
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "UPDATE ME! (TM)",
+        "supportEmail": "admin@example.com"
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "southamerica-east1",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

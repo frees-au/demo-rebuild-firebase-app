@@ -1,0 +1,27 @@
+{
+  "name": "ac-pontify",
+  "version": "0.1.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "watch": "vite build --watch",
+    "emulate": "firebase emulators:start",
+    "status": "node scripts/status.mjs",
+    "seed": "node scripts/seed-data.mjs",
+    "full-e2e": "pnpm run build && XDG_CONFIG_HOME=/private/tmp/ac-pontify-firebase-config firebase emulators:exec --only auth,firestore,functions,hosting,storage \"pnpm run seed && pnpm exec playwright test\"",
+    "seed-e2e": "pnpm seed && pnpm exec playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "firebase-admin": "^13.10.0",
+    "svelte": "^5.56.10",
+    "vite": "8.2.0-beta.0"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "@svar-ui/svelte-calendar": "^2.6.0",
+    "firebase": "^12.18.0"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "_comment_default": "Get this from Firebase Console > Project settings > General > Project ID.",
+    "default": "UPDATE_ME"
+  }
+}

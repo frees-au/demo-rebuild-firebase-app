@@ -1,0 +1,86 @@
+{
+  "email": "admin@example.com",
+  "givenNames": "Simon",
+  "surname": "Hobbs",
+  "preferredName": "Simon",
+  "employeeCode": "AC-0001",
+  "kioskPin": "9001",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 3333-0505"
+    },
+    {
+      "label": "Office",
+      "default": false,
+      "telephone": "+55 21 3333-0506"
+    }
+  ],
+  "primaryPosition": "Tactical Fisherman",
+  "status": "active",
+  "employmentType": "contractor",
+  "cpf": "555.666.777-88",
+  "dateOfBirth": "1979-11-11",
+  "identity": {
+    "rg": "11.222.333-4",
+    "rnm": "",
+    "driversLicense": "RJ112233445",
+    "ctps": "1357246",
+    "pis": "135.72468.90-3"
+  },
+  "hireDate": "2026-01-05",
+  "addresses": [
+    {
+      "default": true,
+      "number": "300",
+      "street": "Rua Visconde de Piraja",
+      "complement": "Cobertura",
+      "postalCode": "22410-003",
+      "neighborhood": "Ipanema",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    },
+    {
+      "default": false,
+      "number": "310",
+      "street": "Rua Visconde de Piraja",
+      "complement": "Cobertura",
+      "postalCode": "22410-003",
+      "neighborhood": "Ipanema",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": false,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "admin@example.com",
+    "bankName": "Bradesco",
+    "bankCode": "237",
+    "bankBranch": "4321",
+    "bankBranchDigit": "0",
+    "bankAccount": "112233",
+    "bankAccountDigit": "5",
+    "bankAccountType": "checking",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 1420,
+  "routeTimeMinutes": 45,
+  "nextOfKinName": "Alex Hobbs",
+  "nextOfKinRelationship": "Partner",
+  "nextOfKinTelephone": "+55 21 94444-0505",
+  "localTimezone": "Australia/Melbourne",
+  "preferredLanguage": "en",
+  "notes": "Administrator seed profile.",
+  "claims": {
+    "admin": true
+  }
+}

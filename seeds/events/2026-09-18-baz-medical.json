@@ -1,0 +1,7 @@
+{
+  "dateEnd": "18 September 2026 at 11:30:00 UTC-3",
+  "dateStart": "18 September 2026 at 10:30:00 UTC-3",
+  "eventType": "medical",
+  "notes": "Sample one-hour medical appointment for Baz.",
+  "userProfile": "userProfiles/AC-1002"
+}

@@ -1,0 +1,65 @@
+{
+  "email": "camila@example.com",
+  "givenNames": "Camila",
+  "surname": "Rocha",
+  "preferredName": "Camila",
+  "employeeCode": "AC-1003",
+  "kioskPin": "1003",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-1003"
+    }
+  ],
+  "primaryPosition": "barista",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "321.654.987-00",
+  "dateOfBirth": "1994-05-21",
+  "identity": {
+    "rg": "21.654.987-0",
+    "rnm": "",
+    "driversLicense": "",
+    "ctps": "3216549",
+    "pis": "321.65498.70-0"
+  },
+  "hireDate": "2026-05-04",
+  "addresses": [
+    {
+      "default": true,
+      "number": "88",
+      "street": "Rua das Laranjeiras",
+      "complement": "Apto 402",
+      "postalCode": "22240-000",
+      "neighborhood": "Laranjeiras",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "camila@example.com",
+    "bankName": "Caixa Economica Federal",
+    "bankCode": "104",
+    "bankBranch": "2201",
+    "bankBranchDigit": "3",
+    "bankAccount": "772211",
+    "bankAccountDigit": "8",
+    "bankAccountType": "checking",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 900,
+  "routeTimeMinutes": 30,
+  "nextOfKinName": "Renata Rocha",
+  "nextOfKinRelationship": "Mother",
+  "nextOfKinTelephone": "+55 21 97777-1003",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Employee seed profile."
+}

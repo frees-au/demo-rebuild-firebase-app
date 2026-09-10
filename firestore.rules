@@ -1,0 +1,326 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: userProfiles
+    // Document ID: Firebase Auth UID.
+    // Fields:
+    //   - personal identity, telephones, addresses, payment, route, emergency contact, and notes fields.
+    //   - updatedAt: timestamp (required) - last profile save time.
+    //
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated()
+        && request.auth.token.role == 'admin';
+    }
+
+    function isManager() {
+      return isAuthenticated()
+        && request.auth.token.role == 'manager';
+    }
+
+    function canUseAdministration() {
+      return isAdmin() || isManager();
+    }
+
+    function isOwner(profileId) {
+      return isAuthenticated()
+        && request.auth.uid == profileId;
+    }
+
+    function canManageProfile(profileId) {
+      return isOwner(profileId) || canUseAdministration();
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function userProfileFields() {
+      return [
+        'givenNames',
+        'surname',
+        'preferredName',
+        'employeeCode',
+        'onboarded',
+        'portraitPath',
+        'kioskPin',
+        'telephones',
+        'primaryPosition',
+        'status',
+        'employmentType',
+        'cpf',
+        'dateOfBirth',
+        'identity',
+        'hireDate',
+        'addresses',
+        'financial',
+        'routeCostCents',
+        'routeTimeMinutes',
+        'nextOfKinName',
+        'nextOfKinRelationship',
+        'nextOfKinTelephone',
+        'notes',
+        'localTimezone',
+        'calendarTimezone',
+        'preferredLanguage',
+        'updatedAt',
+      ];
+    }
+
+    function appConfigFields() {
+      return [
+        'kioskLockSeconds',
+        'nextEmployeeNumber',
+        'timezone',
+        'defaultLanguage',
+        'themeColors',
+      ];
+    }
+
+    function themeColorFields() {
+      return [
+        'paper',
+        'paperHard',
+        'ink',
+        'inkSoft',
+        'line',
+        'red',
+        'redDark',
+        'redWash',
+        'steel',
+      ];
+    }
+
+    function isValidDateOfBirth() {
+      return !('dateOfBirth' in request.resource.data)
+        || request.resource.data.dateOfBirth == ''
+        || (
+          request.resource.data.dateOfBirth is string
+          && request.resource.data.dateOfBirth.matches('^\\d{4}-\\d{2}-\\d{2}$')
+        );
+    }
+
+    function isValidKioskPin() {
+      return !('kioskPin' in request.resource.data)
+        || request.resource.data.kioskPin == ''
+        || (
+          request.resource.data.kioskPin is string
+          && request.resource.data.kioskPin.matches('^\\d{4,8}$')
+        );
+    }
+
+    function isValidPortraitPath(profileId) {
+      return !('portraitPath' in request.resource.data)
+        || request.resource.data.portraitPath == ''
+        || (
+          request.resource.data.portraitPath is string
+          && request.resource.data.portraitPath.matches('^userPortraits/' + profileId + '\\.[A-Za-z0-9]+$')
+        );
+    }
+
+    function isValidTimezone(value) {
+      return value in ['America/Sao_Paulo', 'Australia/Melbourne'];
+    }
+
+    function isValidLanguage(value) {
+      return value == 'en';
+    }
+
+    function isHexColor(value) {
+      return value is string
+        && value.matches('^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$');
+    }
+
+    function isValidThemeColors() {
+      return !('themeColors' in request.resource.data)
+        || (
+          request.resource.data.themeColors is map
+          && request.resource.data.themeColors.keys().hasOnly(themeColorFields())
+          && (!('paper' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.paper))
+          && (!('paperHard' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.paperHard))
+          && (!('ink' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.ink))
+          && (!('inkSoft' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.inkSoft))
+          && (!('line' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.line))
+          && (!('red' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.red))
+          && (!('redDark' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.redDark))
+          && (!('redWash' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.redWash))
+          && (!('steel' in request.resource.data.themeColors) || isHexColor(request.resource.data.themeColors.steel))
+        );
+    }
+
+    function isValidUserProfile(profileId) {
+      return hasOnlyAllowedFields(userProfileFields())
+        && (!('employeeCode' in request.resource.data) || request.resource.data.employeeCode is string)
+        && (!('onboarded' in request.resource.data) || request.resource.data.onboarded is bool)
+        && isValidDateOfBirth()
+        && isValidKioskPin()
+        && isValidPortraitPath(profileId)
+        && (!('localTimezone' in request.resource.data) || isValidTimezone(request.resource.data.localTimezone))
+        && (!('calendarTimezone' in request.resource.data) || isValidTimezone(request.resource.data.calendarTimezone))
+        && (!('preferredLanguage' in request.resource.data) || isValidLanguage(request.resource.data.preferredLanguage))
+        && request.resource.data.updatedAt == request.time;
+    }
+
+    function ownerCanCreateProfile(profileId) {
+      return isOwner(profileId)
+        && (!('employeeCode' in request.resource.data) || request.resource.data.employeeCode == '')
+        && (!('onboarded' in request.resource.data) || request.resource.data.onboarded == false);
+    }
+
+    function ownerCanUpdateProfile(profileId) {
+      return isOwner(profileId)
+        && request.resource.data.employeeCode == resource.data.employeeCode
+        && request.resource.data.onboarded == resource.data.onboarded;
+    }
+
+    function isValidAppConfig() {
+      return hasOnlyAllowedFields(appConfigFields())
+        && (
+          !('kioskLockSeconds' in request.resource.data)
+          || request.resource.data.kioskLockSeconds == null
+          || (
+            request.resource.data.kioskLockSeconds is int
+            && request.resource.data.kioskLockSeconds > 0
+          )
+        )
+        && (
+          !('nextEmployeeNumber' in request.resource.data)
+          || (
+            request.resource.data.nextEmployeeNumber is int
+            && request.resource.data.nextEmployeeNumber > 0
+          )
+        )
+        && (!('timezone' in request.resource.data) || isValidTimezone(request.resource.data.timezone))
+        && (!('defaultLanguage' in request.resource.data) || isValidLanguage(request.resource.data.defaultLanguage))
+        && isValidThemeColors();
+    }
+
+    function eventFields() {
+      return [
+        'dateEnd',
+        'dateStart',
+        'eventType',
+        'notes',
+        'userProfile',
+      ];
+    }
+
+    function isAttendanceEvent() {
+      return request.resource.data.eventType in ['check-in', 'check-out'];
+    }
+
+    function hasValidEventDates() {
+      return request.resource.data.dateStart is timestamp
+        && (
+          (isAttendanceEvent() && !('dateEnd' in request.resource.data))
+          || (!isAttendanceEvent() && request.resource.data.dateEnd is timestamp)
+        );
+    }
+
+    function hasValidEventUserProfile() {
+      return (
+        request.resource.data.eventType == 'shift-open'
+        && request.resource.data.userProfile == ''
+      ) || (
+        request.resource.data.eventType != 'shift-open'
+        && request.resource.data.userProfile is path
+        && exists(request.resource.data.userProfile)
+      );
+    }
+
+    function isValidEvent() {
+      return hasOnlyAllowedFields(eventFields())
+        && request.resource.data.eventType is string
+        && request.resource.data.eventType in ['shift', 'shift-open', 'medical', 'check-in', 'check-out']
+        && hasValidEventDates()
+        && (!('notes' in request.resource.data) || request.resource.data.notes is string)
+        && hasValidEventUserProfile();
+    }
+
+    function isAssignedShiftEvent() {
+      return isAuthenticated()
+        && resource.data.eventType == 'shift'
+        && resource.data.userProfile == /databases/$(database)/documents/userProfiles/$(request.auth.uid);
+    }
+
+    function documentFields() {
+      return [
+        'contentType',
+        'createdAt',
+        'fileName',
+        'size',
+        'storagePath',
+        'title',
+        'userProfileId',
+      ];
+    }
+
+    function canCreateDocument(profileId) {
+      return isOwner(profileId) || isAdmin();
+    }
+
+    function isValidDocumentContentType() {
+      return request.resource.data.contentType in [
+        'application/pdf',
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+      ];
+    }
+
+    function isValidDocument(profileId, documentId) {
+      return hasOnlyAllowedFields(documentFields())
+        && request.resource.data.userProfileId == profileId
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.fileName is string
+        && request.resource.data.fileName.size() > 0
+        && isValidDocumentContentType()
+        && request.resource.data.size is int
+        && request.resource.data.size > 0
+        && request.resource.data.storagePath is string
+        && request.resource.data.storagePath.matches('^employeeDocuments/' + profileId + '/' + documentId + '/[^/]+$')
+        && request.resource.data.createdAt == request.time;
+    }
+
+    match /userProfiles/{profileId} {
+      allow read: if canManageProfile(profileId);
+      allow create: if (canUseAdministration() || ownerCanCreateProfile(profileId)) && isValidUserProfile(profileId);
+      allow update: if (canUseAdministration() || ownerCanUpdateProfile(profileId)) && isValidUserProfile(profileId);
+      allow delete: if false;
+
+      match /documents/{documentId} {
+        allow read: if canManageProfile(profileId);
+        allow create: if canCreateDocument(profileId) && isValidDocument(profileId, documentId);
+        allow update, delete: if false;
+      }
+    }
+
+    match /events/{eventId} {
+      allow read: if canUseAdministration() || isAssignedShiftEvent();
+      allow create, update: if isAdmin() && isValidEvent();
+      allow delete: if false;
+    }
+
+    match /app/appConfig {
+      allow read: if false;
+      allow create, update: if isAdmin() && isValidAppConfig();
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

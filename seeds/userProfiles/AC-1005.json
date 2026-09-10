@@ -1,0 +1,65 @@
+{
+  "email": "elena@example.com",
+  "givenNames": "Elena",
+  "surname": "Ferreira",
+  "preferredName": "Lena",
+  "employeeCode": "AC-1005",
+  "kioskPin": "1005",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-1005"
+    }
+  ],
+  "primaryPosition": "counter",
+  "status": "active",
+  "employmentType": "part_time",
+  "cpf": "987.321.654-22",
+  "dateOfBirth": "1998-02-03",
+  "identity": {
+    "rg": "43.876.219-5",
+    "rnm": "",
+    "driversLicense": "",
+    "ctps": "9873216",
+    "pis": "987.32165.42-2"
+  },
+  "hireDate": "2026-06-01",
+  "addresses": [
+    {
+      "default": true,
+      "number": "205",
+      "street": "Rua Dias Ferreira",
+      "complement": "Apto 1201",
+      "postalCode": "22431-050",
+      "neighborhood": "Leblon",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "+5521988881005",
+    "bankName": "Nubank",
+    "bankCode": "260",
+    "bankBranch": "0001",
+    "bankBranchDigit": "",
+    "bankAccount": "998877",
+    "bankAccountDigit": "6",
+    "bankAccountType": "payment",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 900,
+  "routeTimeMinutes": 25,
+  "nextOfKinName": "Marcos Ferreira",
+  "nextOfKinRelationship": "Brother",
+  "nextOfKinTelephone": "+55 21 97777-1005",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Employee seed profile."
+}

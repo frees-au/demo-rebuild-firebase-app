@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+.codex/
+coverage/
+playwright-report/
+test-results/
+.vite/
+*.log
+*.tsbuildinfo
+*.tgz
+*.zip
+# Ephemeral credentials created by google-github-actions/auth.
+gha-creds-*.json
+.firebase/

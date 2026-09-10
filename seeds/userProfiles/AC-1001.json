@@ -1,0 +1,70 @@
+{
+  "email": "andy@example.com",
+  "givenNames": "Andy",
+  "surname": "Silva",
+  "preferredName": "Andy",
+  "employeeCode": "AC-1001",
+  "kioskPin": "1001",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-0101"
+    },
+    {
+      "label": "Home",
+      "default": false,
+      "telephone": "+55 21 3333-0101"
+    }
+  ],
+  "primaryPosition": "barista",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "111.222.333-44",
+  "dateOfBirth": "1984-04-18",
+  "identity": {
+    "rg": "12.345.678-9",
+    "rnm": "",
+    "driversLicense": "RJ123456789",
+    "ctps": "1234567",
+    "pis": "123.45678.90-1"
+  },
+  "hireDate": "2026-02-02",
+  "addresses": [
+    {
+      "default": true,
+      "number": "120",
+      "street": "Rua Barata Ribeiro",
+      "complement": "Apto 304",
+      "postalCode": "22040-001",
+      "neighborhood": "Copacabana",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "andy@example.com",
+    "bankName": "Banco do Brasil",
+    "bankCode": "001",
+    "bankBranch": "1234",
+    "bankBranchDigit": "5",
+    "bankAccount": "98765",
+    "bankAccountDigit": "4",
+    "bankAccountType": "checking",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 1420,
+  "routeTimeMinutes": 35,
+  "nextOfKinName": "Maria Silva",
+  "nextOfKinRelationship": "Sister",
+  "nextOfKinTelephone": "+55 21 97777-0202",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Seed profile for local testing."
+}

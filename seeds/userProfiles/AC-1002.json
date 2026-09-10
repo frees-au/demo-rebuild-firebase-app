@@ -1,0 +1,83 @@
+{
+  "email": "barry@example.com",
+  "givenNames": "Barry",
+  "surname": "Costa",
+  "preferredName": "Baz",
+  "employeeCode": "AC-1002",
+  "kioskPin": "1002",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-0303"
+    },
+    {
+      "label": "Neighbour",
+      "default": false,
+      "telephone": "+55 21 3333-0303"
+    }
+  ],
+  "primaryPosition": "cook",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "222.333.444-55",
+  "dateOfBirth": "1979-09-27",
+  "identity": {
+    "rg": "",
+    "rnm": "V123456-A",
+    "driversLicense": "",
+    "ctps": "7654321",
+    "pis": "987.65432.10-9"
+  },
+  "hireDate": "2026-03-09",
+  "addresses": [
+    {
+      "default": true,
+      "number": "450",
+      "street": "Rua Voluntarios da Patria",
+      "complement": "Casa 2",
+      "postalCode": "22250-040",
+      "neighborhood": "Botafogo",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": false
+    },
+    {
+      "default": false,
+      "number": "77",
+      "street": "Rua da Assembleia",
+      "complement": "Sala 801",
+      "postalCode": "20040-020",
+      "neighborhood": "Centro",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": false,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "+5521988880303",
+    "bankName": "Nubank",
+    "bankCode": "260",
+    "bankBranch": "0001",
+    "bankBranchDigit": "",
+    "bankAccount": "12345678",
+    "bankAccountDigit": "0",
+    "bankAccountType": "payment",
+    "bankAccountIsEmployeeOwned": false,
+    "bankAccountHolderName": "Roberta Costa",
+    "bankAccountHolderCpf": "333.444.555-66",
+    "bankAccountHolderRelationship": "Aunt"
+  },
+  "routeCostCents": null,
+  "routeTimeMinutes": null,
+  "nextOfKinName": "Roberta Costa",
+  "nextOfKinRelationship": "Aunt",
+  "nextOfKinTelephone": "+55 21 96666-0303",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Uses a third-party payment account for seed coverage."
+}

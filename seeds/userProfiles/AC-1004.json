@@ -1,0 +1,65 @@
+{
+  "email": "diego@example.com",
+  "givenNames": "Diego",
+  "surname": "Almeida",
+  "preferredName": "Diego",
+  "employeeCode": "AC-1004",
+  "kioskPin": "1004",
+  "telephones": [
+    {
+      "label": "Mobile",
+      "default": true,
+      "telephone": "+55 21 98888-1004"
+    }
+  ],
+  "primaryPosition": "cook",
+  "status": "active",
+  "employmentType": "clt",
+  "cpf": "654.987.321-11",
+  "dateOfBirth": "1988-08-14",
+  "identity": {
+    "rg": "32.765.198-4",
+    "rnm": "",
+    "driversLicense": "RJ327651984",
+    "ctps": "6549873",
+    "pis": "654.98732.11-4"
+  },
+  "hireDate": "2026-05-18",
+  "addresses": [
+    {
+      "default": true,
+      "number": "64",
+      "street": "Rua Sao Clemente",
+      "complement": "Casa",
+      "postalCode": "22260-000",
+      "neighborhood": "Botafogo",
+      "city": "Rio de Janeiro",
+      "state": "RJ",
+      "isHomeAddress": true,
+      "isCommunityAddress": false,
+      "canReceiveMail": true
+    }
+  ],
+  "financial": {
+    "pixPaymentAddress": "65498732111",
+    "bankName": "Santander",
+    "bankCode": "033",
+    "bankBranch": "3188",
+    "bankBranchDigit": "7",
+    "bankAccount": "664422",
+    "bankAccountDigit": "1",
+    "bankAccountType": "salary",
+    "bankAccountIsEmployeeOwned": true,
+    "bankAccountHolderName": "",
+    "bankAccountHolderCpf": "",
+    "bankAccountHolderRelationship": ""
+  },
+  "routeCostCents": 1420,
+  "routeTimeMinutes": 40,
+  "nextOfKinName": "Luciana Almeida",
+  "nextOfKinRelationship": "Wife",
+  "nextOfKinTelephone": "+55 21 97777-1004",
+  "localTimezone": "America/Sao_Paulo",
+  "preferredLanguage": "en",
+  "notes": "Employee seed profile."
+}
